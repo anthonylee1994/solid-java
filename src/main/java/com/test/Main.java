@@ -10,7 +10,6 @@ import com.non.solid.o.BadOrderReport;
 import com.non.solid.s.BadInvoice;
 import com.solid.d.GoodEmailNotification;
 import com.solid.d.GoodEmployee;
-import com.solid.d.GoodNotification;
 import com.solid.i.GoodCircle;
 import com.solid.i.GoodCube;
 import com.solid.l.GoodRectangle;
@@ -99,13 +98,13 @@ public class Main {
     }
 
     public static void violateDependencyInversion() {
-        var badNotification = new BadEmailNotification();
-        BadEmployee badEmployee = new BadEmployee(badNotification);
+        var badEmailNotification = new BadEmailNotification();
+        BadEmployee badEmployee = new BadEmployee(badEmailNotification);
         badEmployee.notifyUser();
     }
 
     public static void dependencyInversion() {
-        GoodNotification goodNotification = new GoodEmailNotification();
+        var goodNotification = new GoodEmailNotification();
         GoodEmployee goodEmployee = new GoodEmployee(goodNotification);
         goodEmployee.notifyUser();
     }
