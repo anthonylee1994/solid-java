@@ -3,7 +3,7 @@ package com.solid.i;
 /**
  * @author anthonylee
  */
-public class GoodCube implements IAreaCalculator, IVolumeCalculator{
+public class GoodCube implements IAreaCalculator, IVolumeCalculator {
     private final double side;
 
     public GoodCube(double side) {
