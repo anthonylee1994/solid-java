@@ -71,6 +71,8 @@ public class Main {
 
     public static void liskovSubstitution() {
         GoodRectangle goodRectangle = new GoodRectangle(5, 10);
+        goodRectangle.setWidth(10);
+        goodRectangle.setHeight(20);
 
         GoodSquare goodSquare = new GoodSquare(5);
         goodSquare.setSide(10);
