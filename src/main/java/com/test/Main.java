@@ -1,116 +1,117 @@
 package com.test;
 
-import com.non.solid.dependency.inversion.BadEmailNotification;
-import com.non.solid.dependency.inversion.BadEmployee;
-import com.non.solid.interfaces.segregation.BadCircle;
-import com.non.solid.interfaces.segregation.BadCube;
-import com.non.solid.liskov.substitution.BadRectangle;
-import com.non.solid.liskov.substitution.BadSquare;
-import com.non.solid.open.closed.BadOrderReport;
-import com.non.solid.single.responsibility.BadInvoice;
-import com.solid.dependency.Inversion.GoodEmailNotification;
-import com.solid.dependency.Inversion.GoodEmployee;
-import com.solid.interfaces.segregation.GoodCircle;
-import com.solid.interfaces.segregation.GoodCube;
-import com.solid.liskov.substitution.GoodRectangle;
-import com.solid.liskov.substitution.GoodSquare;
-import com.solid.liskov.substitution.Shape;
-import com.solid.open.closed.BillOfLading;
-import com.solid.open.closed.GoodOrderReport;
-import com.solid.open.closed.OrderReportInvoice;
-import com.solid.single.responsibility.GoodInvoice;
-import com.solid.single.responsibility.InvoicePrinter;
-import com.solid.single.responsibility.SalesTaxCalculator;
-import com.solid.single.responsibility.State;
+import com.non.solid.dependency.inversion.BadUser;
+import com.non.solid.interfaces.segregation.BadProgrammer;
+import com.non.solid.liskov.substitution.BadBird;
+import com.non.solid.liskov.substitution.BadPenguin;
+import com.non.solid.liskov.substitution.Bird;
+import com.non.solid.open.closed.BadCircle;
+import com.non.solid.open.closed.BadRectangle;
+import com.non.solid.open.closed.BadShapeCalculator;
+import com.non.solid.single.responsibility.BadEmployee;
+import com.solid.dependency.inversion.GoodUser;
+import com.solid.dependency.inversion.MySQLDatabase;
+import com.solid.interfaces.segregation.GoodMother;
+import com.solid.interfaces.segregation.GoodProgrammer;
+import com.solid.liskov.substitution.Eatable;
+import com.solid.liskov.substitution.GoodBird;
+import com.solid.liskov.substitution.GoodPenguin;
+import com.solid.open.closed.GoodCircle;
+import com.solid.open.closed.GoodRectangle;
+import com.solid.open.closed.GoodShapeCalculator;
+import com.solid.single.responsibility.EmployeeProfile;
+import com.solid.single.responsibility.EmployeeStorage;
+import com.solid.single.responsibility.GoodEmployee;
+import com.solid.single.responsibility.SalaryCalculator;
 
-import java.math.BigDecimal;
-import java.util.Set;
+import java.util.List;
 
 /**
  * @author anthonylee
  */
 public class Main {
     public static void violateSingleResponsibility() {
-        var invoice = new BadInvoice("Anthony", "AZ", BigDecimal.valueOf(100));
-        invoice.printInvoice();
+        var employee = new BadEmployee();
+        employee.calculateSalary();
+        employee.saveToDatabase();
+        employee.displayProfile();
     }
 
     public static void singleResponsibility() {
-        var invoice = new GoodInvoice("Anthony", State.AZ, BigDecimal.valueOf(100));
-        var salesTaxCalculator = new SalesTaxCalculator(invoice.state());
-        var invoicePrinter = new InvoicePrinter(invoice, salesTaxCalculator);
-        invoicePrinter.print();
+        var employee = new GoodEmployee();
+        var salaryCalculator = new SalaryCalculator();
+        var employeeStorage = new EmployeeStorage();
+        var employeeProfile = new EmployeeProfile();
+
+        salaryCalculator.calculate(employee);
+        employeeStorage.save(employee);
+        employeeProfile.displayProfile(employee);
     }
 
     public static void violateOpenClosed() {
-        var badOrderReport = new BadOrderReport("Anthony", BigDecimal.valueOf(100), "123 Main St.");
-        badOrderReport.invoice();
-        badOrderReport.billOfLading();
+        var badRectangle = new BadRectangle(5, 10);
+        var badCircle = new BadCircle(5);
+        var shapeCalculator = new BadShapeCalculator();
+
+        System.out.println("Rectangle Area: " + shapeCalculator.calculateArea(badRectangle));
+        System.out.println("Circle Area: " + shapeCalculator.calculateArea(badCircle));
     }
 
-
     public static void openClosed() {
-        var goodOrderReport = new GoodOrderReport("Anthony", BigDecimal.valueOf(100));
-        var invoice = new OrderReportInvoice(goodOrderReport);
-        var billOfLading = new BillOfLading(goodOrderReport,"123 Main St.");
-        invoice.printOut();
-        billOfLading.printOut();
+        var goodRectangle = new GoodRectangle(5, 10);
+        var goodCircle = new GoodCircle(5);
+        var shapeCalculator = new GoodShapeCalculator();
+
+        System.out.println("Rectangle Area: " + shapeCalculator.calculateArea(goodRectangle));
+        System.out.println("Circle Area: " + shapeCalculator.calculateArea(goodCircle));
     }
 
     public static void violateLiskovSubstitution() {
-        var rectangle = new BadRectangle(5, 10);
-        rectangle.setWidth(10);
-        rectangle.setHeight(20);
-        System.out.println("Area: " + rectangle.area());
+        var badBird = new BadBird();
+        var badPenguin = new BadPenguin();
 
-        var square = new BadSquare(5);
-        square.setWidth(10);
-        square.setHeight(20);
-        System.out.println("Area: " + square.area());
+        badBird.eat();
+        badPenguin.eat();
+        badBird.fly();
+        badPenguin.fly();
     }
 
     public static void liskovSubstitution() {
-        var goodRectangle = new GoodRectangle(5, 10);
-        goodRectangle.setWidth(10);
-        goodRectangle.setHeight(20);
+        var goodBird = new GoodBird();
+        var goodPenguin = new GoodPenguin();
 
-        var goodSquare = new GoodSquare(5);
-        goodSquare.setSide(10);
-
-        for (Shape shape : Set.of(goodRectangle, goodSquare)) {
-            System.out.println("Area: " + shape.area());
-        }
+        goodBird.eat();
+        goodPenguin.eat();
+        goodBird.fly();
     }
 
     public static void violateInterfaceSegregation() {
-        var badCube = new BadCube(5);
-        System.out.println("Cube Area: " + badCube.calculateArea());
-        System.out.println("Cube Volume: " + badCube.calculateVolume());
-
-        var badCircle = new BadCircle(5);
-        System.out.println("Circle Area: " + badCircle.calculateArea());
-        System.out.println("Circle Volume: " + badCircle.calculateVolume()); // Error
+        var badProgrammer = new BadProgrammer();
+        badProgrammer.code();
+        badProgrammer.test();
+        badProgrammer.cook();
+        badProgrammer.clean();
     }
 
     public static void interfaceSegregation() {
-        var goodCube = new GoodCube(5);
-        System.out.println("Cube Area: " + goodCube.calculateArea());
-        System.out.println("Cube Volume: " + goodCube.calculateVolume());
+        var goodProgrammer = new GoodProgrammer();
+        goodProgrammer.code();
+        goodProgrammer.test();
 
-        var goodCircle = new GoodCircle(5);
-        System.out.println("Circle Area: " + goodCircle.calculateArea());
+        var goodMother = new GoodMother();
+        goodMother.cook();
+        goodMother.clean();
     }
 
     public static void violateDependencyInversion() {
-        var badEmailNotification = new BadEmailNotification();
-        BadEmployee badEmployee = new BadEmployee(badEmailNotification);
-        badEmployee.notifyUser();
+        var badUser = new BadUser("Anthony");
+        badUser.save();
     }
 
     public static void dependencyInversion() {
-        var goodNotification = new GoodEmailNotification();
-        GoodEmployee goodEmployee = new GoodEmployee(goodNotification);
-        goodEmployee.notifyUser();
+        var mySQLDatabase = new MySQLDatabase();
+        var goodUser = new GoodUser(mySQLDatabase, "Anthony");
+        goodUser.save();
     }
 
     public static void main(String[] args) {

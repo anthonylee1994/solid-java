@@ -3,6 +3,6 @@ package com.solid.open.closed;
 /**
  * @author anthonylee
  */
-public interface Printable {
-    void printOut();
+public interface Shape {
+    double area();
 }
