@@ -59,6 +59,8 @@ public class Main {
 
     public static void violateLiskovSubstitution() {
         var rectangle = new BadRectangle(5, 10);
+        rectangle.setWidth(10);
+        rectangle.setHeight(20);
         System.out.println("Area: " + rectangle.area());
 
         var square = new BadSquare(5);
