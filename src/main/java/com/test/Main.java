@@ -70,11 +70,11 @@ public class Main {
     }
 
     public static void liskovSubstitution() {
-        GoodRectangle goodRectangle = new GoodRectangle(5, 10);
+        var goodRectangle = new GoodRectangle(5, 10);
         goodRectangle.setWidth(10);
         goodRectangle.setHeight(20);
 
-        GoodSquare goodSquare = new GoodSquare(5);
+        var goodSquare = new GoodSquare(5);
         goodSquare.setSide(10);
 
         for (Shape shape : Set.of(goodRectangle, goodSquare)) {
