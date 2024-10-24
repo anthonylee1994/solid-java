@@ -4,7 +4,6 @@ import com.non.solid.dependency.inversion.BadUser;
 import com.non.solid.interfaces.segregation.BadProgrammer;
 import com.non.solid.liskov.substitution.BadBird;
 import com.non.solid.liskov.substitution.BadPenguin;
-import com.non.solid.liskov.substitution.Bird;
 import com.non.solid.open.closed.BadCircle;
 import com.non.solid.open.closed.BadRectangle;
 import com.non.solid.open.closed.BadShapeCalculator;
@@ -13,7 +12,6 @@ import com.solid.dependency.inversion.GoodUser;
 import com.solid.dependency.inversion.MySQLDatabase;
 import com.solid.interfaces.segregation.GoodMother;
 import com.solid.interfaces.segregation.GoodProgrammer;
-import com.solid.liskov.substitution.Eatable;
 import com.solid.liskov.substitution.GoodBird;
 import com.solid.liskov.substitution.GoodPenguin;
 import com.solid.open.closed.GoodCircle;
@@ -23,8 +21,6 @@ import com.solid.single.responsibility.EmployeeProfile;
 import com.solid.single.responsibility.EmployeeStorage;
 import com.solid.single.responsibility.GoodEmployee;
 import com.solid.single.responsibility.SalaryCalculator;
-
-import java.util.List;
 
 /**
  * @author anthonylee
