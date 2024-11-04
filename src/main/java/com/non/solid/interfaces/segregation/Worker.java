@@ -3,17 +3,18 @@ package com.non.solid.interfaces.segregation;
 /**
  * @author anthonylee
  */
+// Bad Example: This class violates the Interface Segregation Principle. It throws an exception when the cook and clean methods are called.
 public interface Worker {
-    public default void code() {
+    default void code() {
         System.out.println("I can code");
     }
-    public default void test() {
+    default void test() {
         System.out.println("I can test");
     }
-    public default void cook() {
+    default void cook() {
         System.out.println("I can cook");
     }
-    public default void clean() {
+    default void clean() {
         System.out.println("I can clean");
     }
 }

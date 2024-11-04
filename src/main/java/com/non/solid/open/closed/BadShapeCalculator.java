@@ -3,6 +3,7 @@ package com.non.solid.open.closed;
 /**
  * @author anthonylee
  */
+// Bad Example: This class violates the Open-Closed Principle. It is not closed for modification.
 public class BadShapeCalculator {
     public double calculateArea(Object shape) {
         if (shape instanceof BadRectangle rectangle) {
