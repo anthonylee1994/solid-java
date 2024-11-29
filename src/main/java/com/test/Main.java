@@ -33,6 +33,7 @@ public class Main {
         employee.displayProfile();
     }
 
+    // Single Responsibility: A class should have one, and only one, responsibility and reason to change.
     public static void singleResponsibility() {
         var employee = new GoodEmployee();
         var salaryCalculator = new SalaryCalculator();
@@ -53,6 +54,7 @@ public class Main {
         System.out.println("Circle Area: " + shapeCalculator.calculateArea(badCircle));
     }
 
+    // Open-Closed: A class should be open for extension, but closed for modification.
     public static void openClosed() {
         var goodRectangle = new GoodRectangle(5, 10);
         var goodCircle = new GoodCircle(5);
@@ -72,6 +74,7 @@ public class Main {
         badPenguin.fly();
     }
 
+    // Liskov Substitution: Subtypes should be replaceable by their base types.
     public static void liskovSubstitution() {
         var goodBird = new GoodBird();
         var goodPenguin = new GoodPenguin();
@@ -89,6 +92,7 @@ public class Main {
         badProgrammer.clean();
     }
 
+    // Interface Segregation: Many specific interfaces are better than a general interface.
     public static void interfaceSegregation() {
         var goodProgrammer = new GoodProgrammer();
         goodProgrammer.code();
@@ -104,6 +108,7 @@ public class Main {
         badUser.save();
     }
 
+    // Dependency Inversion: We must depend on abstractions and not concrete classes.
     public static void dependencyInversion() {
         var mySQLDatabase = new MySQLDatabase();
         var goodUser = new GoodUser(mySQLDatabase, "Anthony");
