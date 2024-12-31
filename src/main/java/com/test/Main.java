@@ -2,12 +2,15 @@ package com.test;
 
 import com.non.solid.dependency.inversion.BadUser;
 import com.non.solid.interfaces.segregation.BadProgrammer;
+import com.non.solid.interfaces.segregation.Worker;
 import com.non.solid.liskov.substitution.BadBird;
 import com.non.solid.liskov.substitution.BadPenguin;
+import com.non.solid.liskov.substitution.Bird;
 import com.non.solid.open.closed.BadCircle;
 import com.non.solid.open.closed.BadRectangle;
 import com.non.solid.open.closed.BadShapeCalculator;
 import com.non.solid.single.responsibility.BadEmployee;
+import com.solid.dependency.inversion.Database;
 import com.solid.dependency.inversion.GoodUser;
 import com.solid.dependency.inversion.MySQLDatabase;
 import com.solid.interfaces.segregation.GoodMother;
@@ -17,6 +20,7 @@ import com.solid.liskov.substitution.GoodPenguin;
 import com.solid.open.closed.GoodCircle;
 import com.solid.open.closed.GoodRectangle;
 import com.solid.open.closed.GoodShapeCalculator;
+import com.solid.open.closed.Shape;
 import com.solid.single.responsibility.EmployeeProfile;
 import com.solid.single.responsibility.EmployeeStorage;
 import com.solid.single.responsibility.GoodEmployee;
@@ -27,7 +31,7 @@ import com.solid.single.responsibility.SalaryCalculator;
  */
 public class Main {
     public static void violateSingleResponsibility() {
-        var employee = new BadEmployee();
+        BadEmployee employee = new BadEmployee();
         employee.calculateSalary();
         employee.saveToDatabase();
         employee.displayProfile();
@@ -35,10 +39,10 @@ public class Main {
 
     // Single Responsibility: A class should have one, and only one, responsibility and reason to change.
     public static void singleResponsibility() {
-        var employee = new GoodEmployee();
-        var salaryCalculator = new SalaryCalculator();
-        var employeeStorage = new EmployeeStorage();
-        var employeeProfile = new EmployeeProfile();
+        GoodEmployee employee = new GoodEmployee();
+        SalaryCalculator salaryCalculator = new SalaryCalculator();
+        EmployeeStorage employeeStorage = new EmployeeStorage();
+        EmployeeProfile employeeProfile = new EmployeeProfile();
 
         salaryCalculator.calculate(employee);
         employeeStorage.save(employee);
@@ -46,9 +50,9 @@ public class Main {
     }
 
     public static void violateOpenClosed() {
-        var badRectangle = new BadRectangle(5, 10);
-        var badCircle = new BadCircle(5);
-        var shapeCalculator = new BadShapeCalculator();
+        BadRectangle badRectangle = new BadRectangle(5, 10);
+        BadCircle badCircle = new BadCircle(5);
+        BadShapeCalculator shapeCalculator = new BadShapeCalculator();
 
         System.out.println("Rectangle Area: " + shapeCalculator.calculateArea(badRectangle));
         System.out.println("Circle Area: " + shapeCalculator.calculateArea(badCircle));
@@ -56,17 +60,17 @@ public class Main {
 
     // Open-Closed: A class should be open for extension, but closed for modification.
     public static void openClosed() {
-        var goodRectangle = new GoodRectangle(5, 10);
-        var goodCircle = new GoodCircle(5);
-        var shapeCalculator = new GoodShapeCalculator();
+        Shape goodRectangle = new GoodRectangle(5, 10);
+        Shape goodCircle = new GoodCircle(5);
+        GoodShapeCalculator shapeCalculator = new GoodShapeCalculator();
 
         System.out.println("Rectangle Area: " + shapeCalculator.calculateArea(goodRectangle));
         System.out.println("Circle Area: " + shapeCalculator.calculateArea(goodCircle));
     }
 
     public static void violateLiskovSubstitution() {
-        var badBird = new BadBird();
-        var badPenguin = new BadPenguin();
+        Bird badBird = new BadBird();
+        Bird badPenguin = new BadPenguin();
 
         badBird.eat();
         badPenguin.eat();
@@ -76,8 +80,8 @@ public class Main {
 
     // Liskov Substitution: Subtypes should be replaceable by their base types.
     public static void liskovSubstitution() {
-        var goodBird = new GoodBird();
-        var goodPenguin = new GoodPenguin();
+        GoodBird goodBird = new GoodBird();
+        GoodPenguin goodPenguin = new GoodPenguin();
 
         goodBird.eat();
         goodPenguin.eat();
@@ -85,7 +89,7 @@ public class Main {
     }
 
     public static void violateInterfaceSegregation() {
-        var badProgrammer = new BadProgrammer();
+        Worker badProgrammer = new BadProgrammer();
         badProgrammer.code();
         badProgrammer.test();
         badProgrammer.cook();
@@ -94,24 +98,24 @@ public class Main {
 
     // Interface Segregation: Many specific interfaces are better than a general interface.
     public static void interfaceSegregation() {
-        var goodProgrammer = new GoodProgrammer();
+        GoodProgrammer goodProgrammer = new GoodProgrammer();
         goodProgrammer.code();
         goodProgrammer.test();
 
-        var goodMother = new GoodMother();
+        GoodMother goodMother = new GoodMother();
         goodMother.cook();
         goodMother.clean();
     }
 
     public static void violateDependencyInversion() {
-        var badUser = new BadUser("Anthony");
+        BadUser badUser = new BadUser("Anthony");
         badUser.save();
     }
 
     // Dependency Inversion: We must depend on abstractions and not concrete classes.
     public static void dependencyInversion() {
-        var mySQLDatabase = new MySQLDatabase();
-        var goodUser = new GoodUser(mySQLDatabase, "Anthony");
+        Database mySQLDatabase = new MySQLDatabase();
+        GoodUser goodUser = new GoodUser(mySQLDatabase, "Anthony");
         goodUser.save();
     }
 
