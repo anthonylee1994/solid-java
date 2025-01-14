@@ -38,7 +38,7 @@ public class Main {
     }
 
     /**
-     * Single Responsibility: A class should have one, and only one, responsibility and reason to change.
+     * Single Responsibility (單一職責): A class should have one, and only one, responsibility and reason to change.
      * 一個類別應該只有一個職責，即只有一個引起它變化的原因。
      * 如何應用：
      * - 將大型類別拆分成多個小型、功能單一的類別。
@@ -65,7 +65,7 @@ public class Main {
     }
 
     /**
-     * Open-Closed: A class should be open for extension, but closed for modification.
+     * Open-Closed (開閉): A class should be open for extension, but closed for modification.
      * 軟體實體（類別、模組、函數）應該對擴展開放，但對修改封閉。
      * 如何應用：
      * - 使用抽象（介面或抽象類別）來擴展行為，而不是修改現有程式碼。
@@ -91,7 +91,7 @@ public class Main {
     }
 
     /**
-     * Liskov Substitution: Subtypes should be replaceable by their base types.
+     * Liskov Substitution (里氏替換): Subtypes should be replaceable by their base types.
      * 子類別應該可以替換掉父類別，並且不會影響程式的正確性。
      * 如何應用：
      * - 確保子類別遵守父類別的契約（行為規範）。
@@ -115,7 +115,7 @@ public class Main {
     }
 
     /**
-     * Interface Segregation: Many specific interfaces are better than a general interface.
+     * Interface Segregation (接口隔離): Many specific interfaces are better than a general interface.
      * 客戶端不應該依賴於它們不需要的介面。
      * 如何應用：
      * - 建立小而具體的介面，而不是大而全的介面。
@@ -137,7 +137,7 @@ public class Main {
     }
 
     /**
-     * Dependency Inversion: We must depend on abstractions and not concrete classes.
+     * Dependency Inversion (依賴倒置): We must depend on abstractions and not concrete classes.
      * 高層模組不應該依賴低層模組，兩者都應該依賴於抽象。
      * - 如何應用：
      * - 使用依賴注入來解耦類別。
