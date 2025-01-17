@@ -3,7 +3,8 @@ package com.non.solid.dependency.inversion;
 /**
  * @author anthonylee
  */
-// Bad Example: This class violates the Dependency Inversion Principle. It depends on the BadMySQLDatabase class.
+// Bad Example: This class violates the Dependency Inversion Principle. It
+// depends on the BadMySQLDatabase class.
 public class BadUser {
     private final String username;
     private final BadMySQLDatabase database;
